@@ -1,3 +1,3 @@
 [workspace]
 resolver = "2"
-members = ["rustonis-cli", "rustonis-core", "rustonis-macros", "rustonis-http", "rustonis-validator", "rustonis-orm"]
+members = ["rustonis-cli", "rustonis-core", "rustonis-macros", "rustonis-http", "rustonis-validator", "rustonis-orm", "rustonis-auth"]

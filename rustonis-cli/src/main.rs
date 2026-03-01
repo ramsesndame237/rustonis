@@ -75,6 +75,12 @@ enum Generator {
         #[arg(long, short)]
         migration: bool,
     },
+
+    /// Génère un middleware Axum
+    Middleware {
+        /// Nom du middleware : ex. auth, rate-limit, VerifyToken
+        name: String,
+    },
 }
 
 #[derive(Subcommand)]
@@ -107,6 +113,9 @@ fn main() {
             }
             Generator::Model { name, migration } => {
                 commands::make_model::execute_model(&name, migration)
+            }
+            Generator::Middleware { name } => {
+                commands::make_middleware::execute_middleware(&name)
             }
         },
         Commands::Db { action } => match action {
