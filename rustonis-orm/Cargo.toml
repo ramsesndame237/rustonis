@@ -1,0 +1,23 @@
+[package]
+name = "rustonis-orm"
+version = "0.1.0"
+edition = "2021"
+description = "Rustonis ORM — Lucid-inspired Active Record for Rust"
+
+[features]
+default = ["sqlite"]
+sqlite  = ["sqlx/sqlite"]
+postgres = ["sqlx/postgres", "sqlx/tls-rustls"]
+mysql   = ["sqlx/mysql",    "sqlx/tls-rustls"]
+
+[dependencies]
+sqlx          = { version = "0.8", features = ["any", "migrate", "runtime-tokio"] }
+tokio         = { version = "1",   features = ["full"] }
+serde         = { version = "1",   features = ["derive"] }
+serde_json    = "1"
+thiserror     = "1"
+async-trait   = "0.1"
+rustonis-macros = { path = "../rustonis-macros" }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }

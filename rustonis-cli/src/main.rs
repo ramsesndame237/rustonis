@@ -40,6 +40,12 @@ enum Commands {
         #[command(subcommand)]
         generator: Generator,
     },
+
+    /// Commandes de base de données (migrate, rollback, fresh, seed)
+    Db {
+        #[command(subcommand)]
+        action: DbAction,
+    },
 }
 
 #[derive(Subcommand)]
@@ -59,6 +65,31 @@ enum Generator {
         /// Nom du validator : ex. CreateUser, login, blog-post
         name: String,
     },
+
+    /// Génère un model et optionnellement sa migration SQL
+    Model {
+        /// Nom du model : ex. User, blog-post, UserProfile
+        name: String,
+
+        /// Génère aussi la migration SQL associée
+        #[arg(long, short)]
+        migration: bool,
+    },
+}
+
+#[derive(Subcommand)]
+enum DbAction {
+    /// Applique les migrations en attente
+    Migrate,
+
+    /// Annule le dernier batch de migrations
+    Rollback,
+
+    /// Rollback tout puis re-applique toutes les migrations
+    Fresh,
+
+    /// Exécute les fichiers dans database/seeders/
+    Seed,
 }
 
 fn main() {
@@ -74,6 +105,15 @@ fn main() {
             Generator::Validator { name } => {
                 commands::make_validator::execute_validator(&name)
             }
+            Generator::Model { name, migration } => {
+                commands::make_model::execute_model(&name, migration)
+            }
+        },
+        Commands::Db { action } => match action {
+            DbAction::Migrate  => commands::db::execute_migrate(),
+            DbAction::Rollback => commands::db::execute_rollback(),
+            DbAction::Fresh    => commands::db::execute_fresh(),
+            DbAction::Seed     => commands::db::execute_seed(),
         },
     };
 

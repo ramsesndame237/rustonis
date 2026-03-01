@@ -8,6 +8,9 @@ name = "rustonis"
 path = "src/main.rs"
 
 [dependencies]
-anyhow = "1.0"
-clap = { version = "4", features = ["derive"] }
-heck = "0.5"
+anyhow  = "1.0"
+clap    = { version = "4", features = ["derive"] }
+heck    = "0.5"
+tokio   = { version = "1", features = ["full"] }
+sqlx    = { version = "0.8", features = ["any", "runtime-tokio"] }
+rustonis-orm = { path = "../rustonis-orm", default-features = false, features = ["sqlite"] }
