@@ -1,7 +1,9 @@
 pub mod db;
 pub mod make;
+pub mod make_mailer;
 pub mod make_middleware;
 pub mod make_model;
 pub mod make_validator;
+pub mod make_view;
 pub mod new;
 pub mod serve;

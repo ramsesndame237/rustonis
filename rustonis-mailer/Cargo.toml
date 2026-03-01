@@ -1,0 +1,18 @@
+[package]
+name = "rustonis-mailer"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "rustonis_mailer"
+path = "src/lib.rs"
+
+[dependencies]
+async-trait = "0.1"
+lettre      = { version = "0.11", features = ["smtp-transport", "tokio1", "builder"], default-features = false }
+serde       = { version = "1", features = ["derive"] }
+thiserror   = "1"
+tokio       = { version = "1", features = ["sync"] }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }

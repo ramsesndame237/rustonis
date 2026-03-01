@@ -162,7 +162,7 @@ fn parse_name(name: &str) -> (String, String) {
 /// Un projet Rustonis est identifié par la présence de :
 /// - `Cargo.toml`
 /// - `.env` ou `.env.example`
-fn find_project_root() -> Result<PathBuf> {
+pub fn find_project_root() -> Result<PathBuf> {
     let mut current = std::env::current_dir()?;
 
     loop {

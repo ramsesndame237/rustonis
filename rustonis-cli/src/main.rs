@@ -81,6 +81,18 @@ enum Generator {
         /// Nom du middleware : ex. auth, rate-limit, VerifyToken
         name: String,
     },
+
+    /// Génère un mailer (classe d'email)
+    Mailer {
+        /// Nom du mailer : ex. Welcome, order-confirmation
+        name: String,
+    },
+
+    /// Génère un template de vue Tera
+    View {
+        /// Nom du template : ex. home, blog-post, UserIndex
+        name: String,
+    },
 }
 
 #[derive(Subcommand)]
@@ -116,6 +128,12 @@ fn main() {
             }
             Generator::Middleware { name } => {
                 commands::make_middleware::execute_middleware(&name)
+            }
+            Generator::Mailer { name } => {
+                commands::make_mailer::execute_mailer(&name)
+            }
+            Generator::View { name } => {
+                commands::make_view::execute_view(&name)
             }
         },
         Commands::Db { action } => match action {
