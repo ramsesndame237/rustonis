@@ -1,0 +1,13 @@
+[package]
+name = "rustonis-cli"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "rustonis"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1.0"
+clap = { version = "4", features = ["derive"] }
+heck = "0.5"

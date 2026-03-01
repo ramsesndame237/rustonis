@@ -1,0 +1,13 @@
+[package]
+name = "rustonis-core"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "rustonis_core"
+path = "src/lib.rs"
+
+[dependencies]
+dotenvy = "0.15"
+async-trait = "0.1"
+tokio = { version = "1", features = ["sync", "macros", "rt-multi-thread"] }
