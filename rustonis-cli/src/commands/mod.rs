@@ -1,5 +1,6 @@
 pub mod db;
 pub mod make;
+pub mod make_job;
 pub mod make_mailer;
 pub mod make_middleware;
 pub mod make_model;

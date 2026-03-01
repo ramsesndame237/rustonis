@@ -93,6 +93,12 @@ enum Generator {
         /// Nom du template : ex. home, blog-post, UserIndex
         name: String,
     },
+
+    /// Génère un job de queue
+    Job {
+        /// Nom du job : ex. SendEmail, process-order, CleanupExpired
+        name: String,
+    },
 }
 
 #[derive(Subcommand)]
@@ -134,6 +140,9 @@ fn main() {
             }
             Generator::View { name } => {
                 commands::make_view::execute_view(&name)
+            }
+            Generator::Job { name } => {
+                commands::make_job::execute_job(&name)
             }
         },
         Commands::Db { action } => match action {
