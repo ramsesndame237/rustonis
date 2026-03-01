@@ -99,6 +99,12 @@ enum Generator {
         /// Nom du job : ex. SendEmail, process-order, CleanupExpired
         name: String,
     },
+
+    /// Génère un handler WebSocket
+    Ws {
+        /// Nom du handler : ex. Chat, live-feed, NotificationCenter
+        name: String,
+    },
 }
 
 #[derive(Subcommand)]
@@ -143,6 +149,9 @@ fn main() {
             }
             Generator::Job { name } => {
                 commands::make_job::execute_job(&name)
+            }
+            Generator::Ws { name } => {
+                commands::make_ws::execute_ws(&name)
             }
         },
         Commands::Db { action } => match action {

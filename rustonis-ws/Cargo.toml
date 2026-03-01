@@ -1,0 +1,19 @@
+[package]
+name    = "rustonis-ws"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "rustonis_ws"
+path = "src/lib.rs"
+
+[dependencies]
+async-trait  = "0.1"
+axum         = { version = "0.8", features = ["ws"] }
+futures-util = "=0.3.31"
+thiserror    = "1"
+tokio        = { version = "1", features = ["sync", "rt", "macros"] }
+tracing      = "0.1"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }

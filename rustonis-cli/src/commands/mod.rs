@@ -6,5 +6,6 @@ pub mod make_middleware;
 pub mod make_model;
 pub mod make_validator;
 pub mod make_view;
+pub mod make_ws;
 pub mod new;
 pub mod serve;
